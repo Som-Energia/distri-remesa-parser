@@ -17,6 +17,17 @@ class CSVParser:
     def loadList(self, invoice_list):
         self.invoice_list = invoice_list
 
+    def procesFile(self):
+        if not self.invoice_list:
+            raise Exception("No invoice loaded. Please, load an invoice list or a file before use procesFile")
+        i = 0
+        while i<len(self.invoice_list):
+            if filter(lambda x: 'SOCIEDAD: 0703-UFD' in x, self.invoice_list[i]):
+                return self.parseUFD()
+            if filter(lambda x: 'No trobada' in x, self.invoice_list[i]):
+                return self.parseERP()
+            i += 1
+
     def parseUFD(self):
         i = 0
         dist_line = []
