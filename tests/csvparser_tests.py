@@ -14,3 +14,12 @@ class TestCSVParser(unittest.TestCase):
         result = p.parseUFD()
 
         self.assertEqual([['J419000000000', '23,09'], ['J419000000001', '53,09']], result)
+
+    def test__parseERP__allOk(self):
+        csv_file = [["J419000000000","57.91","No trobada"]]
+        p = csvparser.CSVParser()
+        p.loadList(csv_file)
+
+        result = p.parseERP()
+
+        self.assertEqual([['J419000000000', '57,91']], result)

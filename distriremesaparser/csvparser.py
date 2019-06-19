@@ -26,3 +26,12 @@ class CSVParser:
             i += 1
         return dist_line[1:]
 
+    def parseERP(self):
+        i = 0
+        dist_line = []
+        while i<len(self.invoice_list):
+            if len(self.invoice_list[i]) == 3:
+                dist_line.append([self.invoice_list[i][0],self.invoice_list[i][1].replace('.',',')])
+            i += 1
+        return dist_line
+
