@@ -1,2 +1,2 @@
-setuptools==40.2.0
-pandas==0.24.1
+setuptools
+pandas
