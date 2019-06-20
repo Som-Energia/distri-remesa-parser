@@ -105,3 +105,6 @@ venv.bak/
 
 # Temporal files
 *.swp
+
+# Output files
+*.csv

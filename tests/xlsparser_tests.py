@@ -17,7 +17,7 @@ class TestXLSParser(unittest.TestCase):
     def test__procesFile__IberdrolaAllOk(self):
         p = xlsparser.XLSParser()
 
-        p.procesFile('test_iberdrola.xlsx')
+        p.procesFile('./data/test_iberdrola.xlsx')
 
         result = self.fromCSVtoList('output_iberdrola.csv')
         self.assertEqual([['100000000000000001', '342,82'],
@@ -25,10 +25,10 @@ class TestXLSParser(unittest.TestCase):
             ['100000000000000003', '344,82'],
             ['100000000000000004', '345,82']], result)
 
-    def test__procesFile__IberdrolaAllOk(self):
+    def test__procesFile__EndesaAllOk(self):
         p = xlsparser.XLSParser()
 
-        p.procesFile('test_endesa.xlsx')
+        p.procesFile('./data/test_endesa.xlsx')
 
         result = self.fromCSVtoList('output_endesa.csv')
         self.assertEqual([['F3901N00000008', '26,24'],
@@ -36,4 +36,5 @@ class TestXLSParser(unittest.TestCase):
             ['F3901N00000010', '21,71'],
             ['F3901N00000011', '30,25'],
             ['F3901N00000012', '25,31']], result)
+
 # vim: et ts=4 sw=4
