@@ -17,7 +17,7 @@ class TestXLSParser(unittest.TestCase):
     def test__procesFile__IberdrolaAllOk(self):
         p = xlsparser.XLSParser()
 
-        p.procesFile('./data/test_iberdrola.xlsx')
+        p.procesFile('./tests/data/test_iberdrola.xlsx')
 
         result = self.fromCSVtoList('output_iberdrola.csv')
         self.assertEqual([['100000000000000001', '342,82'],
@@ -28,7 +28,7 @@ class TestXLSParser(unittest.TestCase):
     def test__procesFile__EndesaAllOk(self):
         p = xlsparser.XLSParser()
 
-        p.procesFile('./data/test_endesa.xlsx')
+        p.procesFile('./tests/data/test_endesa.xlsx')
 
         result = self.fromCSVtoList('output_endesa.csv')
         self.assertEqual([['F3901N00000008', '26,24'],
