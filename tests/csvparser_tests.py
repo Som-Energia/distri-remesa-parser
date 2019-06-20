@@ -36,3 +36,4 @@ class TestCSVParser(unittest.TestCase):
         result = p.procesFile()
 
         self.assertEqual([['J419000000000', '23,09']], result)
+# vim: et ts=4 sw=4

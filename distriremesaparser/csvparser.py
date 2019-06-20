@@ -45,4 +45,4 @@ class CSVParser:
                 dist_line.append([self.invoice_list[i][0],self.invoice_list[i][1].replace('.',',')])
             i += 1
         return dist_line
-
+# vim: et ts=4 sw=4

@@ -36,3 +36,4 @@ class TestXLSParser(unittest.TestCase):
             ['F3901N00000010', '21,71'],
             ['F3901N00000011', '30,25'],
             ['F3901N00000012', '25,31']], result)
+# vim: et ts=4 sw=4
