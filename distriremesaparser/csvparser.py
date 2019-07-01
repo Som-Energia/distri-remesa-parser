@@ -6,7 +6,7 @@ import sys
 
 class CSVParser:
     def __init__(self):
-        pass
+        self.invoice_list = []
 
     def loadCSV(self, file_name):
         with open(file_name, 'r') as csvfile:
