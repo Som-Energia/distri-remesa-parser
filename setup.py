@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='distri-remesa-parser',
-    version='0.1',
+    version='0.1.1',
     description='A python library to parser payment order files with related invoices sended by the spanish "Distribuidoras" to the "Comercializadoras',
     url='https://github.com/Som-Energia/distri-remesa-parser',
     author='oriolpiera',
