@@ -37,4 +37,19 @@ class TestXLSParser(unittest.TestCase):
             ['F3901N00000011', '30,25'],
             ['F3901N00000012', '25,31']], result)
 
+    def test__procesFile__EndesaColumnErr(self):
+        p = xlsparser.XLSParser()
+
+        with self.assertRaises(Exception): p.procesFile('./tests/data/test_endesa_err_columname.xlsx')
+
+    def test__procesFile__IberdrolaColumnErr(self):
+        p = xlsparser.XLSParser()
+
+        with self.assertRaises(Exception): p.procesFile('./tests/data/test_iberdrola_err_columname.xlsx')
+
+    def test__procesFile__EndesaSheetErr(self):
+        p = xlsparser.XLSParser()
+
+        with self.assertRaises(Exception): p.procesFile('./tests/data/test_endesa_err_sheetname.xlsx')
+
 # vim: et ts=4 sw=4

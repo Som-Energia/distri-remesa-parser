@@ -27,12 +27,18 @@ class XLSParser:
         df_obj = df1.select_dtypes(['object'])
         df1[df_obj.columns] = df_obj.apply(lambda x: x.str.strip())
         df1 = df1.iloc[:-2]
-        df1.to_csv(path_or_buf=output_name, sep=';', columns=['Codigo_Fiscal_de_Factura','Importe_Total_de_la_Factura'], header=False, index=False, decimal=',')
+        if 'Codigo_Fiscal_de_Factura' in df1 and 'Importe_Total_de_la_Factura' in df1:
+            df1.to_csv(path_or_buf=output_name, sep=';', columns=['Codigo_Fiscal_de_Factura','Importe_Total_de_la_Factura'], header=False, index=False, decimal=',')
+        else:
+            raise Exception("Invalid column names in Endesa Excel")
 
     def parseIberdrola(self, xl, output_name=None):
         if not output_name:
             output_name='output_iberdrola.csv'
         df1 = xl.parse()
-        df1.to_csv(path_or_buf=output_name, sep=';', columns=['NUMFACTRUA','IMPORTE EUR'], header=False, index=False, decimal=',')
+        if 'NUMFACTRUA' in df1 and 'IMPORTE EUR' in df1:
+            df1.to_csv(path_or_buf=output_name, sep=';', columns=['NUMFACTRUA','IMPORTE EUR'], header=False, index=False, decimal=',')
+        else:
+            raise Exception("Invalid column names in Iberdrola Excel")
 
 # vim: et ts=4 sw=4

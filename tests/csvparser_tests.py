@@ -2,8 +2,17 @@
 # -*- coding: utf-8 -*-
 import unittest
 from distriremesaparser import csvparser
+import csv
 
 class TestCSVParser(unittest.TestCase):
+    def fromCSVtoList(self, file_name):
+        invoice_list = []
+        with open(file_name, 'r') as csvfile:
+            reader = csv.reader(csvfile, delimiter=';')
+            for row in reader:
+                invoice_list.append(row)
+        return invoice_list
+
     def test__parseUFD__allOk(self):
         csv_file = [['FECHA','Nº FACTURA','C.U.P.S.','IMPORTE'],
                     ['01/01/2019', 'J419000000000', 'ES0022000000000000NE1P', '23,09'],
@@ -33,7 +42,27 @@ class TestCSVParser(unittest.TestCase):
         p = csvparser.CSVParser()
         p.loadList(csv_file)
 
-        result = p.procesFile()
+        p.procesFile()
 
+        result = self.fromCSVtoList('/tmp/output.csv')
         self.assertEqual([['J419000000000', '23,09']], result)
+
+    def test__procesFile__ERPAllOk(self):
+        csv_file = [['J419000000000', '23,09'], ['J419000000001', '53,09']]
+        p = csvparser.CSVParser()
+        p.loadList(csv_file)
+
+        p.procesFile()
+
+        result = self.fromCSVtoList('/tmp/output.csv')
+        self.assertEqual([['J419000000000', '23,09'],['J419000000001', '53,09']], result)
+
+    def test__procesFile__CSVErr(self):
+        csv_file = [['2019/01/01', 'J419000000000', '23,09'], ['2019/01/01', 'J419000000001', '53,09']]
+        p = csvparser.CSVParser()
+        p.loadList(csv_file)
+
+        with self.assertRaises(Exception): p.procesFile()
+
+
 # vim: et ts=4 sw=4
