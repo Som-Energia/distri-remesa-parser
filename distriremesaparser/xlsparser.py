@@ -12,7 +12,7 @@ class XLSParser:
         self.invoice_list = invoice_list
 
     def procesFile(self, file_name, output_name=None):
-        xl = pd.ExcelFile(file_name)
+        xl = pd.ExcelFile(file_name, engine='openpyxl')
         if len(xl.sheet_names) < 2:
             self.parseIberdrola(xl, output_name) 
         elif filter(lambda x: 'Facturacion' in x, [xl.sheet_names[1]]):
