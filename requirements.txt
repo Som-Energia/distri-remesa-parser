@@ -1,4 +1,4 @@
 setuptools
-pandas==0.23.4
+pandas
 xlrd
 six
