@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-import StringIO
+from six.moves import StringIO
 import csv
 import sys
 
