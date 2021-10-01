@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+from __future__ import absolute_import, unicode_literals
 from six.moves import StringIO
 import sys
 import pandas as pd
@@ -15,7 +16,7 @@ class XLSParser:
         xl = pd.ExcelFile(file_name)
         if len(xl.sheet_names) < 2:
             self.parseIberdrola(xl, output_name) 
-        elif filter(lambda x: 'Facturacion' in x, [xl.sheet_names[1]]):
+        elif list(filter(lambda x: 'Facturacion' in x, [xl.sheet_names[1]])):
             self.parseEndesa(xl, output_name)
         else:
             raise Exception("File don't match with any suported")

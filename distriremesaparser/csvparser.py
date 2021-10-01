@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+from __future__ import absolute_import, unicode_literals
 from six.moves import StringIO
 import csv
 import sys
@@ -28,11 +29,11 @@ class CSVParser:
         if not self.invoice_list:
             raise Exception("No invoice loaded. Please, load an invoice list or a file before use procesFile")
         i = 0
-        while i<len(self.invoice_list):
-            if filter(lambda x: 'SOCIEDAD: 0703-UFD' in x, self.invoice_list[i]):
+        while i < len(self.invoice_list):
+            if list(filter(lambda x: 'SOCIEDAD: 0703-UFD' in x, self.invoice_list[i])):
                 records = self.parseUFD()
                 break
-            if filter(lambda x: 'No trobada' in x, self.invoice_list[i]):
+            if list(filter(lambda x: 'No trobada' in x, self.invoice_list[i])):
                 records = self.parseERP()
                 break
             if len(self.invoice_list[0]) == 2:
