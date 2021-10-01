@@ -1,5 +1,6 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
+from __future__ import absolute_import, unicode_literals
 import unittest
 from distriremesaparser import csvparser
 import csv
@@ -55,7 +56,7 @@ class TestCSVParser(unittest.TestCase):
         p.procesFile()
 
         result = self.fromCSVtoList('/tmp/output.csv')
-        self.assertEqual([['J419000000000', '23,09'],['J419000000001', '53,09']], result)
+        self.assertEqual([['J419000000000', '23,09'], ['J419000000001', '53,09']], result)
 
     def test__procesFile__CSVErr(self):
         csv_file = [['2019/01/01', 'J419000000000', '23,09'], ['2019/01/01', 'J419000000001', '53,09']]
