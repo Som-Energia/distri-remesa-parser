@@ -2,20 +2,25 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import, unicode_literals
 import unittest
-from distriremesaparser import csvparser
+
 import csv
+import os
+import sys
+sys.path.append(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))
+from distriremesaparser import csvparser
+
 
 class TestCSVParser(unittest.TestCase):
     def fromCSVtoList(self, file_name):
         invoice_list = []
         with open(file_name, 'r') as csvfile:
-            reader = csv.reader(csvfile, delimiter=';')
+            reader = csv.reader(csvfile, delimiter=str(';'))
             for row in reader:
                 invoice_list.append(row)
         return invoice_list
 
     def test__parseUFD__allOk(self):
-        csv_file = [['FECHA','Nº FACTURA','C.U.P.S.','IMPORTE'],
+        csv_file = [['FECHA', 'Nº FACTURA', 'C.U.P.S.', 'IMPORTE'],
                     ['01/01/2019', 'J419000000000', 'ES0022000000000000NE1P', '23,09'],
                     ['01/01/2019', 'J419000000001', 'ES0022000000000000NE1P', '53,09'], ] 
         p = csvparser.CSVParser()
@@ -66,4 +71,6 @@ class TestCSVParser(unittest.TestCase):
         with self.assertRaises(Exception): p.procesFile()
 
 
+if __name__ == '__main__':
+    unittest.main(verbosity=2)
 # vim: et ts=4 sw=4
