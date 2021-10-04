@@ -11,7 +11,7 @@ class CSVParser:
 
     def loadCSV(self, file_name):
         with open(file_name, 'r') as csvfile:
-            reader = csv.reader(csvfile, delimiter=';')
+            reader = csv.reader(csvfile, delimiter=str(';'))
             for row in reader:
                 self.invoice_list.append(row)
     
@@ -44,7 +44,7 @@ class CSVParser:
             raise Exception("File don't match with any suported")
 
         with open(output_name, mode='w') as writer_report:
-            writer_report = csv.writer(writer_report, delimiter=';')
+            writer_report = csv.writer(writer_report, delimiter=str(';'))
             for row in records:
                 writer_report.writerow(row)
 
