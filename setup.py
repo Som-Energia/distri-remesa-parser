@@ -1,4 +1,5 @@
 from setuptools import setup
+readme = open("README.md").read()
 
 setup(
     name='distri-remesa-parser',
@@ -7,6 +8,8 @@ setup(
     url='https://github.com/Som-Energia/distri-remesa-parser',
     author='oriolpiera',
     author_email='oriol.piera@somenergia.coop',
+    long_description = readme,
+    long_description_content_type = 'text/markdown',
     license='GNU General Public License v3 or later (GPLv3+)',
     packages=['distriremesaparser'],
     zip_safe=False,
