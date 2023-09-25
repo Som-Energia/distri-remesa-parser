@@ -3,7 +3,7 @@ readme = open("README.md").read()
 
 setup(
     name='distri-remesa-parser',
-    version='0.1.3',
+    version='0.1.6',
     description='A python library to parser payment order files with related invoices sended by the spanish "Distribuidoras" to the "Comercializadoras',
     url='https://github.com/Som-Energia/distri-remesa-parser',
     author='oriolpiera',
