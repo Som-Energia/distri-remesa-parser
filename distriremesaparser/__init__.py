@@ -1,2 +1,2 @@
-import csvparser
-import xlsparser
+from . import csvparser
+from . import xlsparser

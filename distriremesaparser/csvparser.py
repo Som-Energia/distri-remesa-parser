@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-import StringIO
+from __future__ import absolute_import, unicode_literals
+from six.moves import StringIO
 import csv
 import sys
 
@@ -10,7 +11,7 @@ class CSVParser:
 
     def loadCSV(self, file_name):
         with open(file_name, 'r') as csvfile:
-            reader = csv.reader(csvfile, delimiter=';')
+            reader = csv.reader(csvfile, delimiter=str(';'))
             for row in reader:
                 self.invoice_list.append(row)
     
@@ -28,11 +29,11 @@ class CSVParser:
         if not self.invoice_list:
             raise Exception("No invoice loaded. Please, load an invoice list or a file before use procesFile")
         i = 0
-        while i<len(self.invoice_list):
-            if filter(lambda x: 'SOCIEDAD: 0703-UFD' in x, self.invoice_list[i]):
+        while i < len(self.invoice_list):
+            if list(filter(lambda x: 'SOCIEDAD: 0703-UFD' in x, self.invoice_list[i])):
                 records = self.parseUFD()
                 break
-            if filter(lambda x: 'No trobada' in x, self.invoice_list[i]):
+            if list(filter(lambda x: 'No trobada' in x, self.invoice_list[i])):
                 records = self.parseERP()
                 break
             if len(self.invoice_list[0]) == 2:
@@ -43,7 +44,7 @@ class CSVParser:
             raise Exception("File don't match with any suported")
 
         with open(output_name, mode='w') as writer_report:
-            writer_report = csv.writer(writer_report, delimiter=';')
+            writer_report = csv.writer(writer_report, delimiter=str(';'))
             for row in records:
                 writer_report.writerow(row)
 

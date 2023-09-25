@@ -1,3 +1,5 @@
 setuptools
-pandas
-xlrd
+pandas==0.23.4
+xlrd==1.2.0
+numpy==1.16.5
+six

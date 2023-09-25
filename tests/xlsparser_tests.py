@@ -1,15 +1,20 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
+from __future__ import absolute_import, unicode_literals
 import unittest
+import os
+import sys
+sys.path.append(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))
 from distriremesaparser import xlsparser
 import csv
+
 
 class TestXLSParser(unittest.TestCase):
 
     def fromCSVtoList(self, file_name):
         invoice_list = []
         with open(file_name, 'r') as csvfile:
-            reader = csv.reader(csvfile, delimiter=';')
+            reader = csv.reader(csvfile, delimiter=str(';'))
             for row in reader:
                 invoice_list.append(row)
         return invoice_list
@@ -51,5 +56,9 @@ class TestXLSParser(unittest.TestCase):
         p = xlsparser.XLSParser()
 
         with self.assertRaises(Exception): p.procesFile('./tests/data/test_endesa_err_sheetname.xlsx')
+
+
+if __name__ == '__main__':
+    unittest.main(verbosity=2)
 
 # vim: et ts=4 sw=4

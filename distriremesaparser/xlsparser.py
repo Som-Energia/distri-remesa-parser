@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-import StringIO
+from __future__ import absolute_import, unicode_literals
+from six.moves import StringIO
 import sys
 import pandas as pd
 
@@ -15,7 +16,7 @@ class XLSParser:
         xl = pd.ExcelFile(file_name)
         if len(xl.sheet_names) < 2:
             self.parseIberdrola(xl, output_name) 
-        elif filter(lambda x: 'Facturacion' in x, [xl.sheet_names[1]]):
+        elif list(filter(lambda x: 'Facturacion' in x, [xl.sheet_names[1]])):
             self.parseEndesa(xl, output_name)
         else:
             raise Exception("File don't match with any suported")
@@ -28,7 +29,7 @@ class XLSParser:
         df1[df_obj.columns] = df_obj.apply(lambda x: x.str.strip())
         df1 = df1.iloc[:-2]
         if 'Codigo_Fiscal_de_Factura' in df1 and 'Importe_Total_de_la_Factura' in df1:
-            df1.to_csv(path_or_buf=output_name, sep=';', columns=['Codigo_Fiscal_de_Factura','Importe_Total_de_la_Factura'], header=False, index=False, decimal=',')
+            df1.to_csv(path_or_buf=output_name, sep=str(';'), columns=['Codigo_Fiscal_de_Factura','Importe_Total_de_la_Factura'], header=False, index=False, decimal=',')
         else:
             raise Exception("Invalid column names in Endesa Excel")
 
@@ -37,7 +38,7 @@ class XLSParser:
             output_name='output_iberdrola.csv'
         df1 = xl.parse()
         if 'NUMFACTRUA' in df1 and 'IMPORTE EUR' in df1:
-            df1.to_csv(path_or_buf=output_name, sep=';', columns=['NUMFACTRUA','IMPORTE EUR'], header=False, index=False, decimal=',')
+            df1.to_csv(path_or_buf=output_name, sep=str(';'), columns=['NUMFACTRUA','IMPORTE EUR'], header=False, index=False, decimal=',')
         else:
             raise Exception("Invalid column names in Iberdrola Excel")
 
