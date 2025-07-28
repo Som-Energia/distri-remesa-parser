@@ -2,9 +2,11 @@ name: Run Tests
 
 on:
   push:
-    branches: [ main ]
+    branches: [ master ]
   pull_request:
-    branches: [ main ]
+    branches: [ master ]
+env:
+  PYENV_ROOT: /home/runner/.pyenv
 
 jobs:
   test:
@@ -18,10 +20,17 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v5
-        with:
-          python-version: ${{ matrix.python-version }}
+      - name: Install pyenv
+        run: |
+          curl https://pyenv.run | bash
+          echo "$PYENV_ROOT/bin" >> $GITHUB_PATH
+          echo "$PYENV_ROOT/shims" >> $GITHUB_PATH
+
+      - name: Install Python ${{ matrix.python-version }}
+        run: |
+          pyenv install ${{ matrix.python-version }}
+          pyenv global ${{ matrix.python-version }}
+          pip install --upgrade pip setuptools wheel
 
       - name: Install dependencies
         run: |

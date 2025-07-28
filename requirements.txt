@@ -1,5 +1,7 @@
 setuptools
-pandas==0.23.4
+pandas==0.23.4;python_version<="2.7.18"
+pandas;python_version>"2.7.18"
 xlrd==1.2.0
-numpy==1.16.5
+numpy==1.16.5;python_version<="2.7.18"
+numpy;python_version>"2.7.18"
 six

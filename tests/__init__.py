@@ -1,2 +1,2 @@
-import test_csvparser
-import test_xlsparser
+from test_csvparser import *
+from test_xlsparser import *
